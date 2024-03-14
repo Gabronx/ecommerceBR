@@ -1,14 +1,15 @@
-<?php 
+<?php
 
 namespace Hcode;
 
 use Rain\Tpl;
 
-class Mailer {
-	
-	const USERNAME = "cursophp7hcode@gmail.com";
+class Mailer
+{
+
+	const USERNAME = "fabiogabriel.work@hotmail.com";
 	const PASSWORD = "<?password?>";
-	const NAME_FROM = "Hcode Store";
+	const NAME_FROM = "strain";
 
 	private $mail;
 
@@ -16,12 +17,12 @@ class Mailer {
 	{
 
 		$config = array(
-			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
-			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . "/views/email/",
+			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/",
 			"debug"         => false
-	    );
+		);
 
-		Tpl::configure( $config );
+		Tpl::configure($config);
 
 		$tpl = new Tpl;
 
@@ -31,7 +32,7 @@ class Mailer {
 
 		$html = $tpl->draw($tplName, true);
 
-		$this->mail = new \PHPMailer;
+		$this->mail = new \PHPMailer\PHPMailer\PHPMailer;
 
 		//Tell PHPMailer to use SMTP
 		$this->mail->isSMTP();
@@ -94,9 +95,5 @@ class Mailer {
 	{
 
 		return $this->mail->send();
-
 	}
-
 }
-
- ?>
